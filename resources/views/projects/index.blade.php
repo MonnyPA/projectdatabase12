@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
-                            <a href="#" class="btn btn-primary btn-round">Add New Project</a>
+                            <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
                         </div>
                     <table
                         id="basic-datatables"

@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="{{ asset('kaiadmin/assets/css/plugins.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('kaiadmin/assets/css/kaiadmin.min.css') }}" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('kaiadmin/assets/css/demo.css') }}" />
 
@@ -872,6 +874,20 @@
             ]);
         $("#addRowModal").modal("hide");
         });
+    });
+    </script>
+
+    <!-- Dibutuhkan untuk handle date -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Inisialisasi flatpickr pada input dengan class "date"
+    let date = flatpickr(".date", {
+        // enableTime: true, // Aktifkan pemilihan waktu
+        dateFormat: "Y-m-d", // Format tanggal dan waktu
+    });
+    let datetime = flatpickr(".datetime", {
+        enableTime: true, // Aktifkan pemilihan waktu
+        dateFormat: "Y-m-d H:i", // Format tanggal dan waktu
     });
     </script>
 </body>
