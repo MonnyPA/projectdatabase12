@@ -47,4 +47,37 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.index')->with('success', 'Project ' . $validate['site_id'] . ' created successfully.');
     }
+
+    public function edit(Project $project)
+    {
+        $employees = Employee::all();
+        $sows = Sow::all();
+        return view('projects.edit', compact('project', 'employees', 'sows'));
+    }
+
+    public function update(Request $request, Project $project)
+    {
+        $validate = $request->validate([
+            'site_id' => 'required|string',
+            'site_name' => 'required|string',
+            'lattitude' => 'required|string',
+            'longitude' => 'required|string',
+            'sow_id' => 'required',
+            'assign_date' => 'required|date',
+            'employee_id' => 'required',
+            'progress' => 'required',
+            'permit_start_date' => 'nullable|date',
+            'permit_end_date' => 'nullable|date',
+            'start_action_date' => 'nullable|date',
+            'end_action_date' => 'nullable|date',
+            'foto_ba_outbound' => 'nullable|string',
+            'foto_ba_inbound' => 'nullable|string',
+        ]);
+
+        // Jika berhasil validasi, maka update data
+
+        $project->update($validate);
+
+        return redirect()->route('projects.index')->with('success', 'Project ' . $validate['site_id'] . ' updated successfully.');
+    }
 }

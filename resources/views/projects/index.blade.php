@@ -64,7 +64,7 @@
                             <td class="text-center">{{ $project->employee->fullname }}</td>
                             <td class="text-center">
                                 <a href="#" class="btn btn-info btn-sm">View</a>
-                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                             </tr>

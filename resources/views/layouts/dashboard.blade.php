@@ -774,14 +774,14 @@
     <script src="{{ asset('kaiadmin/assets/js/plugin/datatables/datatables.min.js') }}"></script>
 
     <!-- Bootstrap Notify -->
-    <script src="{{ asset('kaiadmin/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+    {{-- <script src="{{ asset('kaiadmin/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script> --}}
 
     <!-- jQuery Vector Maps -->
     <script src="{{ asset('kaiadmin/assets/js/plugin/jsvectormap/jsvectormap.min.js') }}"></script>
     <script src="{{ asset('kaiadmin/assets/js/plugin/jsvectormap/world.js') }}"></script>
 
     <!-- Sweet Alert -->
-    <script src="{{ asset('kaiadmin/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
+    {{-- <script src="{{ asset('kaiadmin/assets/js/plugin/sweetalert/sweetalert.min.js') }}"></script> --}}
 
     <!-- Kaiadmin JS -->
     <script src="{{ asset('kaiadmin/assets/js/kaiadmin.min.js') }}"></script>
