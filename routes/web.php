@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SowController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\RoleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,9 @@ Route::resource('/employees', EmployeeController::class);
 
 // Handle Department
 Route::resource('/departments', DepartmentController::class);
+
+// Handle Role
+Route::resource('/roles', RoleController::class);
 
 
 Route::middleware('auth')->group(function () {
