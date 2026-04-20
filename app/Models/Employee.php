@@ -27,4 +27,14 @@ class Employee extends Model
         'foto_ktp',
         'foto_selfie'
     ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
 }

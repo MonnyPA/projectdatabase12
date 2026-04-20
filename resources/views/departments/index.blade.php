@@ -4,7 +4,7 @@
 
 
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Data Departments</h3>
+            <h3 class="fw-bold mb-3">Departments</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">

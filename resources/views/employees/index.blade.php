@@ -4,7 +4,7 @@
 
 
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Roles</h3>
+            <h3 class="fw-bold mb-3">Employees</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -15,7 +15,7 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Roles</a>
+                    <a href="#">Employees</a>
                 </li>
                 <li class="separator">
                     <i class="icon-arrow-right"></i>
@@ -29,12 +29,12 @@
             <div class="col-md-12">
                 <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">List</h4>
+                    <h4 class="card-title">List Data Employee</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
-                            <a href="{{ route('roles.create') }}" class="btn btn-primary btn-round">Add New Role</a>
+                            <a href="#" class="btn btn-primary btn-round">Add New Employee</a>
                         </div>
 
                     @if(session('success'))
@@ -51,23 +51,32 @@
                         <thead>
                             <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Title</th>
-                            <th class="text-center">Description</th>
+                            <th class="text-center">Full Name</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Birth Date</th>
+                            <th class="text-center">Jabatan</th>
+                            <th class="text-center">Department</th>
+                            <th class="text-center">Hire Date</th>
                             <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($roles as $role)
+                            @foreach ($employees as $employee)
                             <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-center">{{ Str::ucfirst($role->title) }}</td>
-                            <td class="text-center">{{ $role->description }}</td>
+                            <td class="text-center">{{ $employee->fullname }}</td>
+                            <td class="text-center">{{ $employee->email }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($employee->birth_date)->format('d F Y') }}</td>
+                            <td class="text-center">{{ $employee->role->title }}</td>
+                            <td class="text-center">{{ $employee->department->title }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($employee->hire_date)->format('d F Y') }}</td>
                             <td class="text-center">
-                                <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="d-inline">
+                                <a href="#" class="btn btn-info btn-sm">View</a>
+                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="#" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Role?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Project?')">Delete</button>
                                 </form>
                             </td>
                             </tr>
