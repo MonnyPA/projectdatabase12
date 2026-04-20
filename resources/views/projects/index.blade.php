@@ -36,6 +36,14 @@
                         <div class="mb-3 text-end me-3">
                             <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
                         </div>
+
+                    @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert"">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert" style="font-size: 0.7rem;"></button>
+                    </div>
+                    @endif
+
                     <table
                         id="basic-datatables"
                         class="display table table-striped table-hover"
@@ -58,14 +66,18 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ $project->site_id }}</td>
                             <td class="text-center">{{ $project->site_name }}</td>
-                            <td class="text-center">{{ $project->sow->title }}</td>
+                            <td class="text-center">{{ Str::ucfirst($project->sow->title) }}</td>
                             <td class="text-center">{{ $project->assign_date }}</td>
-                            <td class="text-center">{{ $project->progress }}</td>
+                            <td class="text-center">{{ Str::ucfirst($project->progress) }}</td>
                             <td class="text-center">{{ $project->employee->fullname }}</td>
                             <td class="text-center">
-                                <a href="#" class="btn btn-info btn-sm">View</a>
+                                <a href="{{ route('projects.show', $project->id) }}" class="btn btn-info btn-sm">View</a>
                                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
+                                </form>
                             </td>
                             </tr>
                             @endforeach

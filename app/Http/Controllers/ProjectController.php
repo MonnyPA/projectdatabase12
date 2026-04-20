@@ -45,7 +45,7 @@ class ProjectController extends Controller
 
         Project::create($validate);
 
-        return redirect()->route('projects.index')->with('success', 'Project ' . $validate['site_id'] . ' created successfully.');
+        return redirect()->route('projects.index')->with('success', 'Project Site ID : ' . $validate['site_id'] . ', created successfully.');
     }
 
     public function edit(Project $project)
@@ -78,6 +78,18 @@ class ProjectController extends Controller
 
         $project->update($validate);
 
-        return redirect()->route('projects.index')->with('success', 'Project ' . $validate['site_id'] . ' updated successfully.');
+        return redirect()->route('projects.index')->with('success', 'Project Site ID : ' . $validate['site_id'] . ', updated successfully.');
+    }
+
+    public function show(Project $project)
+    {
+        return view('projects.show', compact('project'));
+    }
+
+    public function destroy(Project $project)
+    {
+        $project->delete();
+
+        return redirect()->route('projects.index')->with('success', 'Project ' . $project->site_id . ' deleted successfully.');
     }
 }

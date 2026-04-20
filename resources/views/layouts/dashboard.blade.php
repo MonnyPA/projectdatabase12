@@ -818,7 +818,7 @@
     });
     </script>
 
-    // Datatables
+    <!-- Datatables -->
     <script>
     $(document).ready(function () {
         $("#basic-datatables").DataTable({});
