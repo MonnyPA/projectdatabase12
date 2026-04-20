@@ -4,7 +4,7 @@
 
 
         <div class="page-header">
-            <h3 class="fw-bold mb-3">Data Project</h3>
+            <h3 class="fw-bold mb-3">Data SOW</h3>
             <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                     <a href="#">
@@ -15,7 +15,7 @@
                     <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="#">Projects</a>
+                    <a href="#">SOWs</a>
                 </li>
                 <li class="separator">
                     <i class="icon-arrow-right"></i>
@@ -29,12 +29,12 @@
             <div class="col-md-12">
                 <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">List Project</h4>
+                    <h4 class="card-title">List</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
-                            <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
+                            <a href="{{ route('sows.create') }}" class="btn btn-primary btn-round">Add New SOW</a>
                         </div>
 
                     @if(session('success'))
@@ -51,32 +51,23 @@
                         <thead>
                             <tr>
                             <th class="text-center">No</th>
-                            <th class="text-center">Site ID</th>
-                            <th class="text-center">Site Name</th>
-                            <th class="text-center">SOW</th>
-                            <th class="text-center">Assign Date</th>
-                            <th class="text-center">Progress</th>
-                            <th class="text-center">Team</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Description</th>
                             <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($projects as $project)
+                            @foreach ($sows as $sow)
                             <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="text-center">{{ $project->site_id }}</td>
-                            <td class="text-center">{{ $project->site_name }}</td>
-                            <td class="text-center">{{ Str::ucfirst($project->sow->title) }}</td>
-                            <td class="text-center">{{ $project->assign_date }}</td>
-                            <td class="text-center">{{ Str::ucfirst($project->progress) }}</td>
-                            <td class="text-center">{{ $project->employee->fullname }}</td>
+                            <td class="text-center">{{ Str::ucfirst($sow->title) }}</td>
+                            <td class="text-center">{{ $sow->description }}</td>
                             <td class="text-center">
-                                <a href="{{ route('projects.show', $project->id) }}" class="btn btn-info btn-sm">View</a>
-                                <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('sows.edit', $sow->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{ route('sows.destroy', $sow->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Project?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this SOW?')">Delete</button>
                                 </form>
                             </td>
                             </tr>
