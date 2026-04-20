@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SowController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DepartmentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +21,12 @@ Route::resource('/projects', ProjectController::class);
 
 // Handle SOW
 Route::resource('/sows', SowController::class);
+
+// Handle Employee
+Route::resource('/employees', EmployeeController::class);
+
+// Handle Department
+Route::resource('/departments', DepartmentController::class);
 
 
 Route::middleware('auth')->group(function () {
