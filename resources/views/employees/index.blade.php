@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
-                            <a href="#" class="btn btn-primary btn-round">Add New Employee</a>
+                            <a href="{{ route('employees.create') }}" class="btn btn-primary btn-round">Add New Employee</a>
                         </div>
 
                     @if(session('success'))
@@ -67,8 +67,8 @@
                             <td class="text-center">{{ $employee->fullname }}</td>
                             <td class="text-center">{{ $employee->email }}</td>
                             <td class="text-center">{{ \Carbon\Carbon::parse($employee->birth_date)->format('d F Y') }}</td>
-                            <td class="text-center">{{ $employee->role->title }}</td>
-                            <td class="text-center">{{ $employee->department->title }}</td>
+                            <td class="text-center">{{ Str::ucfirst($employee->role->title) }}</td>
+                            <td class="text-center">{{ Str::ucfirst($employee->department->title) }}</td>
                             <td class="text-center">{{ \Carbon\Carbon::parse($employee->hire_date)->format('d F Y') }}</td>
                             <td class="text-center">
                                 <a href="#" class="btn btn-info btn-sm">View</a>
