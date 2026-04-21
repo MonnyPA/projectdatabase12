@@ -72,7 +72,7 @@
                             <td class="text-center">{{ \Carbon\Carbon::parse($employee->hire_date)->format('d F Y') }}</td>
                             <td class="text-center">
                                 <a href="#" class="btn btn-info btn-sm">View</a>
-                                <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="#" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')

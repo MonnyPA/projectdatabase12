@@ -4,7 +4,7 @@
 
 
         <div class="page-header">
-              <h3 class="fw-bold mb-3">Create New Employee</h3>
+              <h3 class="fw-bold mb-3">Update Data Employee</h3>
               <ul class="breadcrumbs mb-3">
                 <li class="nav-home">
                   <a href="#">
@@ -21,7 +21,7 @@
                   <i class="icon-arrow-right"></i>
                 </li>
                 <li class="nav-item">
-                  <a href="#">Create</a>
+                  <a href="#">Update</a>
                 </li>
               </ul>
             </div>
@@ -32,8 +32,9 @@
                     <div class="card-title">Form Input</div>
                     </div>
                     <div class="card-body">
-                    <form action="{{ route('employees.store') }}" method="POST">
+                    <form action="{{ route('employees.update', $employee->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
 
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
@@ -50,6 +51,7 @@
                                     id="fullname"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="fullname"
+                                    value="{{ old('fullname', $employee->fullname) }}"
                                     required
                                 />
                                 @error('fullname')
@@ -70,6 +72,7 @@
                                     id="email"
                                     placeholder="Silahkan masukan Email"
                                     name="email"
+                                    value="{{ old('email', $employee->email) }}"
                                     required
                                 />
                                 @error('email')
@@ -90,6 +93,7 @@
                                     id="nik"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="nik"
+                                    value="{{ old('nik', $employee->nik) }}"
                                     required
                                 />
                                 @error('nik')
@@ -110,6 +114,8 @@
                                     id="phone_number"
                                     placeholder="Silahkan masukan phone_number"
                                     name="phone_number"
+                                    value="{{ old('phone_number', $employee->phone_number) }}"
+                                    required
                                 />
                                 @error('phone_number')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -129,6 +135,8 @@
                                     id="birth_date"
                                     placeholder="Silahkan masukan Longitude"
                                     name="birth_date"
+                                    value="{{ old('birth_date', $employee->birth_date) }}"
+                                    required
                                 />
                                 @error('birth_date')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -148,6 +156,7 @@
                                     id="id_akun_iepms"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="id_akun_iepms"
+                                    value="{{ old('id_akun_iepms', $employee->id_akun_iepms) }}"
                                     required
                                 />
                                 @error('id_akun_iepms')
@@ -168,6 +177,7 @@
                                     id="hire_date"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="hire_date"
+                                    value="{{ old('hire_date', $employee->hire_date) }}"
                                     required
                                 />
                                 @error('hire_date')
@@ -190,6 +200,7 @@
                                     id="ser_wah"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="ser_wah"
+                                    value="{{ old('ser_wah', $employee->ser_wah) }}"
                                     required
                                 />
                                 @error('ser_wah')
@@ -210,6 +221,7 @@
                                     id="ser_first_aid"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="ser_first_aid"
+                                    value="{{ old('ser_first_aid', $employee->ser_first_aid) }}"
                                     required
                                 />
                                 @error('ser_first_aid')
@@ -230,6 +242,7 @@
                                     id="ser_electrikal"
                                     placeholder="Silahkan masukan Nama Employee"
                                     name="ser_electrikal"
+                                    value="{{ old('ser_electrikal', $employee->ser_electrikal) }}"
                                     required
                                 />
                                 @error('ser_electrikal')
@@ -245,8 +258,18 @@
                                 <div class="col-md-9 p-0">
                                 <select name="status_employee" id="status_employee" class="form-control @error('status_employee') is-invalid @enderror" required>
                                 <option value="">Select Status Employee</option>
-                                <option value="internal" {{ @old('status_employee') == 'internal' ? 'selected' : '' }}>Internal</option>
-                                <option value="external" {{ @old('status_employee') == 'External' ? 'selected' : '' }}>External</option>
+                                <option value="internal"
+                                    @if(old('status_employee', $employee->status_employee) == 'internal')
+                                    selected
+                                    @endif>
+                                    Internal
+                                </option>
+                                <option value="external"
+                                    @if(old('status_employee', $employee->status_employee) == 'external')
+                                    selected
+                                    @endif>
+                                    External
+                                </option>
                             </select>
                             @error('status_employee')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -263,7 +286,9 @@
                                 <select name="role_id" id="role_id" class="form-control @error('role_id') is-invalid @enderror" required>
                                 <option value="">Select Jabatan</option>
                                 @foreach($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('role_id') == $role->id ? 'selected' : '' }}>
+                                    <option value="{{ $role->id }}"
+                                        @if(old('role_id', $role->id) == $role->id) selected
+                                        @endif>
                                         {{ $role->title }}
                                     </option>
                                 @endforeach
@@ -283,7 +308,10 @@
                                 <select name="department_id" id="department_id" class="form-control @error('department_id') is-invalid @enderror" required>
                                 <option value="">Select a Department</option>
                                 @foreach($departments as $department)
-                                    <option value="{{ $department->id }}" {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                    <option value="{{ $department->id }}"
+                                        @if(old('department_id', $department->id) == $department->id)
+                                        selected
+                                        @endif>
                                         {{ $department->title }}
                                     </option>
                                 @endforeach
@@ -303,6 +331,7 @@
                                 class="form-control-file"
                                 id="foto_ktp"
                                 name="foto_ktp"
+                                value="{{ old('foto_ktp', $employee->foto_ktp) }}"
                             />
                             </div>
                             <div class="form-group">
@@ -314,13 +343,14 @@
                                 class="form-control-file"
                                 id="foto_selfie"
                                 name="foto_selfie"
+                                value="{{ old('foto_selfie', $employee->foto_selfie) }}"
                             />
                             </div>
 
                         </div>
                         <div class="card-action">
                         <button type="submit" class="btn btn-success">Submit</button>
-                        <a href="#" class="btn btn-danger">Cancel</a>
+                        <a href="{{ route('employees.index') }}" class="btn btn-danger">Cancel</a>
                         {{-- <button class="btn btn-danger">Cancel</button> --}}
                         </div>
                         </div>
