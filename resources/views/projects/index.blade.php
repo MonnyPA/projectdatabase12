@@ -37,8 +37,8 @@
                             @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
                             <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
                             @endif
+                            <a href="{{ url('/export-projects') }}" class="btn btn-success btn-round">Download Excel</a>
                         </div>
-
                     @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert"">
                         {{ session('success') }}

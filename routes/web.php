@@ -9,6 +9,8 @@ use App\Http\Controllers\SowController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\RoleController;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProjectExport;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +23,12 @@ Route::middleware('auth')->group(function() {
 
     // Handle Project
     Route::resource('/projects', ProjectController::class);
+
+    // Handle Download
+    Route::get('/export-projects', function () {
+    return Excel::download(new ProjectExport, 'projects.xlsx');
+    });
+
 
     // Handle SOW
     Route::resource('/sows', SowController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager']);
