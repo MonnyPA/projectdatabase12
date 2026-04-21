@@ -69,7 +69,7 @@
                             <td class="text-center">{{ Str::ucfirst($project->sow->title) }}</td>
                             <td class="text-center">{{ $project->assign_date }}</td>
                             <td class="text-center">{{ Str::ucfirst($project->progress) }}</td>
-                            <td class="text-center">{{ $project->employee->fullname }}</td>
+                            <td class="text-center">{{ $project->employee?->fullname ?? 'Tidak ada employee' }}</td>
                             <td class="text-center">
                                 <a href="{{ route('projects.show', $project->id) }}" class="btn btn-info btn-sm">View</a>
                                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
