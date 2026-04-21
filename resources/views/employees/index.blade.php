@@ -34,7 +34,9 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
+                            @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager']))
                             <a href="{{ route('employees.create') }}" class="btn btn-primary btn-round">Add New Employee</a>
+                            @endif
                         </div>
 
                     @if(session('success'))
@@ -72,12 +74,14 @@
                             <td class="text-center">{{ \Carbon\Carbon::parse($employee->hire_date)->format('d F Y') }}</td>
                             <td class="text-center">
                                 <a href="{{ route('employees.show', $employee->id) }}" class="btn btn-info btn-sm">View</a>
+                                @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager']))
                                 <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('employees.destroy', $employee->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Project?')">Delete</button>
                                 </form>
+                                @endif
                             </td>
                             </tr>
                             @endforeach

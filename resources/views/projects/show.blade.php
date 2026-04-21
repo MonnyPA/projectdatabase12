@@ -96,12 +96,14 @@
                         </div>
                     </div>
                     <div class="text-center">
+                    @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
                     <form action="#" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
                     </form>
                     <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-info btn-sm">Edit</a>
+                    @endif
                     <a href="{{ route('projects.index') }}" class="btn btn-secondary btn-sm">Back to List</a>
                     </div>
                     </div>

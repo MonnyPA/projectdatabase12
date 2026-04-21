@@ -34,7 +34,9 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
+                            @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
                             <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
+                            @endif
                         </div>
 
                     @if(session('success'))
@@ -72,12 +74,14 @@
                             <td class="text-center">{{ $project->employee?->fullname ?? 'Tidak ada employee' }}</td>
                             <td class="text-center">
                                 <a href="{{ route('projects.show', $project->id) }}" class="btn btn-info btn-sm">View</a>
+                                @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
                                 <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Project?')">Delete</button>
                                 </form>
+                                @endif
                             </td>
                             </tr>
                             @endforeach

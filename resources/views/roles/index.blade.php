@@ -34,7 +34,9 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <div class="mb-3 text-end me-3">
+                            @if(in_array(session('role'), ['pemegang_saham','pemilik']))
                             <a href="{{ route('roles.create') }}" class="btn btn-primary btn-round">Add New Role</a>
+                            @endif
                         </div>
 
                     @if(session('success'))
@@ -53,7 +55,9 @@
                             <th class="text-center">No</th>
                             <th class="text-center">Title</th>
                             <th class="text-center">Description</th>
+                            @if(in_array(session('role'), ['pemegang_saham','pemilik']))
                             <th class="text-center">Action</th>
+                            @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -62,6 +66,7 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="text-center">{{ Str::ucfirst($role->title) }}</td>
                             <td class="text-center">{{ $role->description }}</td>
+                            @if(in_array(session('role'), ['pemegang_saham','pemilik']))
                             <td class="text-center">
                                 <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="d-inline">
@@ -70,6 +75,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Role?')">Delete</button>
                                 </form>
                             </td>
+                            @endif
                             </tr>
                             @endforeach
                         </tbody>

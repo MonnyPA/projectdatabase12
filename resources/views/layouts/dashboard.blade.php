@@ -171,6 +171,13 @@
                 <span class=""></span>
                 </a>
             </li>
+            <li class="nav-item {{ request()->is('departments') ? 'active' : '' }}">
+                <a href="{{ url('/departments') }}" class='sidebar-link'>
+                <i class="fas fa-sitemap"></i>
+                <p>Departments</p>
+                <span class=""></span>
+                </a>
+            </li>
             @endif
 
             <li

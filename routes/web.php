@@ -23,16 +23,16 @@ Route::middleware('auth')->group(function() {
     Route::resource('/projects', ProjectController::class);
 
     // Handle SOW
-    Route::resource('/sows', SowController::class)->middleware(['role: pemegang_saham,pemilik,admin']);
+    Route::resource('/sows', SowController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager']);
 
     // Handle Employee
     Route::resource('/employees', EmployeeController::class);
 
     // Handle Department
-    Route::resource('/departments', DepartmentController::class)->middleware(['role: pemegang_saham,pemilik,manager,admin']);
+    Route::resource('/departments', DepartmentController::class);
 
     // Handle Role
-    Route::resource('/roles', RoleController::class)->middleware(['role: pemegang_saham,pemilik,admin']);
+    Route::resource('/roles', RoleController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager']);
 });
 
 Route::middleware('auth')->group(function () {
