@@ -14,24 +14,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Handle Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::middleware('auth')->group(function() {
 
-// Handle Project
-Route::resource('/projects', ProjectController::class);
+    // Handle Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-// Handle SOW
-Route::resource('/sows', SowController::class);
+    // Handle Project
+    Route::resource('/projects', ProjectController::class);
 
-// Handle Employee
-Route::resource('/employees', EmployeeController::class);
+    // Handle SOW
+    Route::resource('/sows', SowController::class)->middleware(['role: pemegang_saham,pemilik,admin']);
 
-// Handle Department
-Route::resource('/departments', DepartmentController::class);
+    // Handle Employee
+    Route::resource('/employees', EmployeeController::class);
 
-// Handle Role
-Route::resource('/roles', RoleController::class);
+    // Handle Department
+    Route::resource('/departments', DepartmentController::class)->middleware(['role: pemegang_saham,pemilik,manager,admin']);
 
+    // Handle Role
+    Route::resource('/roles', RoleController::class)->middleware(['role: pemegang_saham,pemilik,admin']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

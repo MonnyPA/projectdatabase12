@@ -76,10 +76,10 @@
         <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
-            <li class="nav-item active">
+            <li class="nav-item {{ request()->is('dashboard') ? 'active' : '' }}">
                 <a
-                data-bs-toggle="collapse"
-                href="#dashboard"
+
+                href="{{ url('/dashboard') }}"
                 class="collapsed"
                 aria-expanded="false"
                 >
@@ -94,46 +94,90 @@
                 </span>
                 <h4 class="text-section">Menu</h4>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#base">
+            @if(in_array(session('role'),['pemegang_saham','pemilik','admin']))
+            <li class="nav-item {{ request()->is('projects') ? 'active' : '' }}">
+                <a href="{{ url('/projects') }}" class='sidebar-link'>
                 <i class="fas fa-tasks"></i>
                 <p>Projects</p>
                 <span class=""></span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#base">
+            <li class="nav-item {{ request()->is('sows') ? 'active' : '' }}">
+                <a href="{{ url('/sows') }}" class='sidebar-link'>
                 <i class="fas fa-box"></i>
                 <p>SOW Project</p>
                 <span class=""></span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <li class="nav-item {{ request()->is('employees') ? 'active' : '' }}">
+                <a href="{{ url('/employees') }}" class='sidebar-link'>
                 <i class="fas fa-user-tie"></i>
                 <p>Employees</p>
                 <span class=""></span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <li class="nav-item {{ request()->is('departments') ? 'active' : '' }}">
+                <a href="{{ url('/departments') }}" class='sidebar-link'>
                 <i class="fas fa-sitemap"></i>
                 <p>Departments</p>
                 <span class=""></span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
+            <li class="nav-item {{ request()->is('roles') ? 'active' : '' }}">
+                <a href="{{ url('/roles') }}" class='sidebar-link'>
                 <i class="fas fa-user-cog"></i>
                 <p>Roles</p>
                 <span class=""></span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                <i class="fas fa-sign-out-alt"></i>
-                <p>Logout</p>
+            @endif
+
+            @if(in_array(session('role'),['Manager']))
+            <li class="nav-item {{ request()->is('projects') ? 'active' : '' }}">
+                <a href="{{ url('/projects') }}" class='sidebar-link'>
+                <i class="fas fa-tasks"></i>
+                <p>Projects</p>
                 <span class=""></span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->is('employees') ? 'active' : '' }}">
+                <a href="{{ url('/employees') }}" class='sidebar-link'>
+                <i class="fas fa-user-tie"></i>
+                <p>Employees</p>
+                <span class=""></span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->is('departments') ? 'active' : '' }}">
+                <a href="{{ url('/departments') }}" class='sidebar-link'>
+                <i class="fas fa-sitemap"></i>
+                <p>Departments</p>
+                <span class=""></span>
+                </a>
+            </li>
+            @endif
+
+            @if(in_array(session('role'),['karyawan','koordinator']))
+            <li class="nav-item {{ request()->is('projects') ? 'active' : '' }}">
+                <a href="{{ url('/projects') }}" class='sidebar-link'>
+                <i class="fas fa-tasks"></i>
+                <p>Projects</p>
+                <span class=""></span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->is('employees') ? 'active' : '' }}">
+                <a href="{{ url('/employees') }}" class='sidebar-link'>
+                <i class="fas fa-user-tie"></i>
+                <p>Employees</p>
+                <span class=""></span>
+                </a>
+            </li>
+            @endif
+
+            <li
+                class="nav-item">
+                <a href="{{ url('/logout') }}" class='sidebar-link'>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
                 </a>
             </li>
         </div>
@@ -513,7 +557,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Account Setting</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
                     </li>
                     </div>
                 </ul>
