@@ -35,4 +35,22 @@ class DashboardController extends Controller
 
         return view('dashboard.index', compact('employee','totalProjects','projects','sow','department','role','actionDone','permitRequest','actionOg'));
     }
+
+    public function project()
+    {
+        $data = Project::where('progress', 'action_done')
+        ->selectRaw('MONTH(assign_date) as month, YEAR(assign_date) as year, COUNT(*) as total_project')
+        ->groupBy( 'year', 'month')
+        ->orderBy('month', 'asc')
+        ->get();
+
+        $temp = [];
+        $i = 0;
+        foreach ($data as $item) {
+            $temp[$i] = $item->total_project;
+            $i++;
+    }
+
+        return response()->json($temp);
+    }
 }

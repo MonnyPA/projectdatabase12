@@ -13,13 +13,14 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ProjectExport;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::middleware('auth')->group(function() {
 
     // Handle Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);
+    Route::get('/dashboard/project', [DashboardController::class, 'project']);
 
     // Handle Project
     Route::resource('/projects', ProjectController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);

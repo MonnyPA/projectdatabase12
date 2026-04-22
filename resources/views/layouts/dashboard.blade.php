@@ -940,6 +940,63 @@
         enableTime: true, // Aktifkan pemilihan waktu
         dateFormat: "Y-m-d H:i", // Format tanggal dan waktu
     });
+
+    var ctxBar = document.getElementById("project").getContext("2d");
+    var myBar = new Chart(ctxBar, {
+        type: "bar",
+        data: {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [
+            {
+            label: "Action Done",
+            backgroundColor: "#177dff",
+            borderColor: "#177dff",
+            borderWidth: 1,
+            hoverBackgroundColor: "#177dff",
+            hoverBorderColor: "#177dff",
+            data: [],
+            }
+
+        ],
+        },
+        options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: "Progress Projects per Month",
+        },
+        scales: {
+            yAxes: [
+            {
+                ticks: {
+                beginAtZero: true,
+                },
+            },
+            ],
+        },
+        },
+    });
+
+    function updateData() {
+        fetch("/dashboard/project")
+        .then((response) => response.json())
+        .then((output) => {
+        myBar.data.datasets = [
+            {
+                label: "Action Done",
+                backgroundColor: "#177dff",
+                borderColor: "#177dff",
+                borderWidth: 1,
+                hoverBackgroundColor: "#177dff",
+                hoverBorderColor: "#177dff",
+                data: output,
+            }
+        ];
+        myBar.update();
+        });
+    }
+
+    updateData();
     </script>
 </body>
 </html>

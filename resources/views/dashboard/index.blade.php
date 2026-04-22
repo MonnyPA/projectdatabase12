@@ -109,7 +109,7 @@
                 <div class="card card-round">
                 <div class="card-header">
                     <div class="card-head-row">
-                    <div class="card-title">Project Statistic</div>
+                    <div class="card-title"><i>Project Statistic</i></div>
                     <div class="card-tools">
                         <a
                         href="#"
@@ -131,7 +131,7 @@
                 </div>
                 <div class="card-body">
                     <div class="chart-container" style="min-height: 375px">
-                    <canvas id="statisticsChart"></canvas>
+                    <canvas id="project"></canvas>
                     </div>
                     <div id="myChartLegend"></div>
                 </div>
@@ -471,7 +471,7 @@
                 <div class="card card-round">
                 <div class="card-header">
                     <div class="card-head-row card-tools-still-right">
-                    <div class="card-title">Project Terakhir</div>
+                    <div class="card-title"><i>Project Terakhir</i></div>
                     {{-- <div class="card-tools">
                         <div class="dropdown">
                         <button
