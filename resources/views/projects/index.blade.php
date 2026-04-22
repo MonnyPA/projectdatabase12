@@ -36,8 +36,8 @@
                         <div class="mb-3 text-end me-3">
                             @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
                             <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
-                            @endif
                             <a href="{{ url('/export-projects') }}" class="btn btn-success btn-round">Download Excel</a>
+                            @endif
                         </div>
                     @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert"">
@@ -52,7 +52,7 @@
                         >
                         <thead>
                             <tr>
-                            <th class="text-center">No</th>
+                            <th class="text-center" style="width: 5px;">No</th>
                             <th class="text-center">Site ID</th>
                             <th class="text-center">Site Name</th>
                             <th class="text-center">SOW</th>

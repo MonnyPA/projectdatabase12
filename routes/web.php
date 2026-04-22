@@ -19,10 +19,10 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function() {
 
     // Handle Dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);
 
     // Handle Project
-    Route::resource('/projects', ProjectController::class);
+    Route::resource('/projects', ProjectController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);
 
     // Handle Download
     Route::get('/export-projects', function () {
@@ -34,10 +34,10 @@ Route::middleware('auth')->group(function() {
     Route::resource('/sows', SowController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager']);
 
     // Handle Employee
-    Route::resource('/employees', EmployeeController::class);
+    Route::resource('/employees', EmployeeController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);
 
     // Handle Department
-    Route::resource('/departments', DepartmentController::class);
+    Route::resource('/departments', DepartmentController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager,karyawan,koordinator']);
 
     // Handle Role
     Route::resource('/roles', RoleController::class)->middleware(['role: pemegang_saham,pemilik,admin,manager']);

@@ -11,7 +11,12 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        if(in_array(session('role'), ['pemegang_saham','pemilik'])) {
+            $projects = Project::all();
+        } else {
+            $projects = Project::where('employee_id', session('employee_id'))->get();
+        }
+
         return view('projects.index', compact('projects'));
     }
 

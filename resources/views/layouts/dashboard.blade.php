@@ -224,7 +224,7 @@
             class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom"
         >
             <div class="container-fluid">
-            <nav
+            {{-- <nav
                 class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
             >
                 <div class="input-group">
@@ -239,7 +239,7 @@
                     class="form-control"
                 />
                 </div>
-            </nav>
+            </nav> --}}
 
             <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                 <li
@@ -267,7 +267,7 @@
                     </form>
                 </ul>
                 </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                {{-- <li class="nav-item topbar-icon dropdown hidden-caret">
                 <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -357,8 +357,8 @@
                     </a>
                     </li>
                 </ul>
-                </li>
-                <li class="nav-item topbar-icon dropdown hidden-caret">
+                </li> --}}
+                {{-- <li class="nav-item topbar-icon dropdown hidden-caret">
                 <a
                     class="nav-link dropdown-toggle"
                     href="#"
@@ -513,7 +513,7 @@
                     </div>
                     </div>
                 </div>
-                </li>
+                </li> --}}
 
                 <li class="nav-item topbar-user dropdown hidden-caret">
                 <a

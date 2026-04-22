@@ -11,9 +11,15 @@ class EmployeeController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();
         $departments = Department::all();
         $roles = Role::all();
+
+        if(in_array(session('role'), ['pemegang_saham','pemilik'])) {
+            $employees = Employee::all();
+        } else {
+            $employees = Employee::where('id', session('employee_id'))->get();
+        }
+
         return view('employees.index', compact('employees','roles','departments'));
     }
 

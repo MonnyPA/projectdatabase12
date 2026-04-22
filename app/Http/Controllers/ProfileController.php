@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ProjectExport;
 
 class ProfileController extends Controller
 {
@@ -57,4 +59,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function export(Request $request)
+    {
+        $columns = $request->columns ?? [];
+
+        return Excel::download(new ProjectExport($columns), 'projects.xlsx');
+    }
+
 }

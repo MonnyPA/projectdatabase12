@@ -52,7 +52,7 @@
                         >
                         <thead>
                             <tr>
-                            <th class="text-center">No</th>
+                            <th class="text-center" style="width: 5px;">No</th>
                             <th class="text-center">Title</th>
                             <th class="text-center">Description</th>
                             @if(in_array(session('role'), ['pemegang_saham','pemilik']))
