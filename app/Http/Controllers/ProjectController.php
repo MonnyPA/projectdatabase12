@@ -11,7 +11,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        if(in_array(session('role'), ['pemegang_saham','pemilik'])) {
+        if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager'])) {
             $projects = Project::all();
         } else {
             $projects = Project::where('employee_id', session('employee_id'))->get();

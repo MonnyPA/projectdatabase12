@@ -8,10 +8,15 @@
                 <h3 class="fw-bold mb-3">Welcome</h3>
                 <h6 class="op-7 mb-2">PT Kyla Genne Connections</h6>
             </div>
-            {{-- <div class="ms-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
-            </div> --}}
+            <div class="ms-md-auto py-2 py-md-0">
+                @if(in_array(session('role'), ['pemegang_saham','pemilik']))
+                <a href="{{ route('employees.create') }}" class="btn btn-label-info btn-round me-2">Add New Employee</a>
+                @endif
+
+                @if(in_array(session('role'), ['pemegang_saham','pemilik','admin','manager','koordinator']))
+                <a href="{{ route('projects.create') }}" class="btn btn-primary btn-round">Add New Project</a>
+                @endif
+            </div>
             </div>
             <div class="row">
             <div class="col-sm-6 col-md-3">
@@ -467,7 +472,7 @@
                 <div class="card-header">
                     <div class="card-head-row card-tools-still-right">
                     <div class="card-title">Project Terakhir</div>
-                    <div class="card-tools">
+                    {{-- <div class="card-tools">
                         <div class="dropdown">
                         <button
                             class="btn btn-icon btn-clean me-0"
@@ -490,7 +495,7 @@
                             >
                         </div>
                         </div>
-                    </div>
+                    </div> --}}
                     </div>
                 </div>
                 <div class="card-body p-0">
@@ -524,12 +529,12 @@
                             </th>
                             <td class="text-center">{{ $project->site_name }}</td>
                             <td class="text-center">{{ $project->employee->fullname }}</td>
-                            <td class="text-center">{{ $project->assign_date }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($project->assign_date)->format('d F Y') }}</td>
                             <td class="text-center">
                             @if ($project->progress == 'action_done')
-                            <span class="badge badge-success">{{ $project->progress }}</span>
+                            <span class="badge badge-success">{{ Str::ucfirst($project->progress) }}</span>
                             @else
-                            <span class="badge badge-warning">{{ $project->progress }}</span>
+                            <span class="badge badge-warning">{{ Str::ucfirst($project->progress) }}</span>
                             @endif
                             </td>
                         </tr>

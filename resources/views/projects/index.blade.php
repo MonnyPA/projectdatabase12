@@ -69,7 +69,7 @@
                             <td class="text-center">{{ $project->site_id }}</td>
                             <td class="text-center">{{ $project->site_name }}</td>
                             <td class="text-center">{{ Str::ucfirst($project->sow->title) }}</td>
-                            <td class="text-center">{{ $project->assign_date }}</td>
+                            <td class="text-center">{{ \Carbon\Carbon::parse($project->assign_date)->format('d F Y') }}</td>
                             <td class="text-center">{{ Str::ucfirst($project->progress) }}</td>
                             <td class="text-center">{{ $project->employee?->fullname ?? 'Tidak ada employee' }}</td>
                             <td class="text-center">
