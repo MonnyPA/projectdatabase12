@@ -523,31 +523,31 @@
                     aria-expanded="false"
                 >
                     <div class="avatar-sm">
-                    <img
+                    {{-- <img
                         src="{{ asset('kaiadmin/assets/img/profile.jpg') }}"
                         alt="..."
                         class="avatar-img rounded-circle"
-                    />
+                    /> --}}
                     </div>
                     <span class="profile-username">
                     <span class="op-7">Hi,</span>
-                    <span class="fw-bold">Hizrian</span>
+                    <span class="fw-bold">{{ auth()->user()->employee->fullname ?? 'user' }}</span>
                     </span>
                 </a>
                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                     <div class="dropdown-user-scroll scrollbar-outer">
                     <li>
                         <div class="user-box">
-                        <div class="avatar-lg">
+                        {{-- <div class="avatar-lg">
                             <img
                             src="{{ asset('kaiadmin/assets/img/profile.jpg') }}"
                             alt="image profile"
                             class="avatar-img rounded"
                             />
-                        </div>
+                        </div> --}}
                         <div class="u-text">
-                            <h4>Hizrian</h4>
-                            <p class="text-muted">hello@example.com</p>
+                            <h4>{{ auth()->user()->employee->fullname ?? 'user' }}</h4>
+                            <p class="text-muted">{{ auth()->user()->employee->email ?? 'email' }}</p>
                             <a
                             href="profile.html"
                             class="btn btn-xs btn-secondary btn-sm"
